@@ -1,0 +1,74 @@
+{
+  "rules": {
+    "$user": {
+      "status": {
+        ".write": "auth !== null && auth.uid === $user",
+        ".validate": "newData.isBoolean()"
+      },
+      "room_ids": {
+        ".read": "auth !== null && auth.uid === $user",
+        ".write": " auth !== null && auth.uid === $user",
+        "$room_id": {
+          ".validate": "newData.isBoolean()"
+        }
+      },
+      "connect": {
+        ".read": "auth !== null && auth.uid === $user",
+        ".write": "auth !== null",
+        "$con": {
+          "host_id": {
+            ".validate": true
+          },
+          "room_id": {
+            ".validate": true
+          },
+          "room_title": {
+            ".validate": true
+          },
+          "host_name": {
+            ".validate": true
+          },
+          "$c": {
+            ".validate": false
+          }
+        }
+      },
+      "rooms": {
+        "$room": {
+          ".write": "auth !== null && auth.uid === $user",
+          ".read": "auth !== null && auth.uid === $user",
+          "messages": {
+            ".read": "auth !== null && data.parent().child('allowed').child(auth.uid).exists()",
+            ".write": "auth !== null && data.parent().child('allowed').child(auth.uid).exists()",
+            "$msg": {
+              "id": {
+                ".validate": "newData.val() === auth.uid"
+              },
+              "msg": {
+                ".validate": true
+              },
+              "name": {
+                ".validate": true
+              },
+              "$m": {
+                ".validate": false
+              }
+            }
+          },
+          "allowed": {
+            "$allowed": {
+              ".validate": "newData.isBoolean()"
+            }
+          },
+          "joined": {
+            ".read": "auth !== null && data.parent().child('allowed').child(auth.uid).exists()",
+            ".write": true,
+            "$joined": {
+              ".validate": "auth !== null && $joined === auth.uid && (auth.uid === $user || data.parent().parent().child('allowed').child($joined).exists())"
+            }
+          }
+        }
+      }
+    }
+  }
+}
