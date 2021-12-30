@@ -1,8 +1,8 @@
 ### App Overview
 
-This is a real-time chat application. Users are allowed to create one or more rooms and invite friends to join chat. Each room is isolated and guarded with Firebase Security Rules.
+This is a real-time multi-chat application. Users are allowed to create one or more chat rooms and invite friends to join. Chat rooms are isolated, and access protected with Firebase Security Rules.
 
-Other app features include new user signup, login, logout, password reset, search new friends, and add new friends. App scripts are trans-piled targeting latest browsers. Internet Explorer is not supported.
+Other application features include new user signup, login, logout, password reset, search and add new friends. Application scripts are trans-piled targeting the latest browsers. Internet Explorer is not supported.
 
 ### Fullscreen Layout
 
@@ -16,5 +16,5 @@ Other app features include new user signup, login, logout, password reset, searc
 
 ![mobile layout](https://github.com/jinlin2001/portfolio/blob/main/public/chatbox-mobile.png)
 
-Live app:  
+Live App:  
 [https://chatbox-3c9c2.firebaseapp.com/](https://chatbox-3c9c2.firebaseapp.com/)
